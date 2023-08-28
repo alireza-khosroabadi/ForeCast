@@ -1,4 +1,4 @@
-package com.alireza.eliqtask.data.local.file
+package com.alireza.eliqtask.data.local.file.uiPatternStore
 
 import android.app.Application
 import com.alireza.eliqtask.data.local.entity.UiPattern
@@ -9,7 +9,7 @@ import java.io.IOException
 import java.io.InputStreamReader
 import javax.inject.Inject
 
-class AssetFileStore @Inject constructor(private val context: Application, private val moshi:Moshi) {
+class UiPatterDataStore @Inject constructor(private val context: Application, private val moshi:Moshi) {
     suspend fun getUiPattern(fileName:String):UiPattern?{
         val assetManager = context.assets
         val jsonAdapter: JsonAdapter<UiPattern> = moshi.adapter(UiPattern::class.java)

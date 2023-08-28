@@ -2,24 +2,20 @@ package com.alireza.eliqtask.data.local.file
 
 import android.app.Application
 import android.content.res.AssetManager
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.alireza.eliqtask.data.local.file.uiPatternStore.UiPatterDataStore
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import java.io.ByteArrayInputStream
-import java.io.InputStream
 
-//@RunWith(AndroidJUnit4::class)
-class AssetFileStoreTest{
-    private lateinit var assetReader: AssetFileStore
+class UiPatternDataStoreTest{
+    private lateinit var uiPatternDataStore: UiPatterDataStore
     private lateinit var mockContext: Application
     private lateinit var mockAssetManager: AssetManager
     private lateinit var moshi: Moshi
@@ -30,7 +26,7 @@ class AssetFileStoreTest{
         mockAssetManager = mock()
         moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
         whenever(mockContext.assets).thenReturn(mockAssetManager)
-        assetReader = AssetFileStore(mockContext, moshi)
+        uiPatternDataStore = UiPatterDataStore(mockContext, moshi)
     }
 
 
@@ -57,7 +53,7 @@ class AssetFileStoreTest{
         val inputStream = ByteArrayInputStream(fileContents.toByteArray())
         whenever(mockAssetManager.open(any())).thenReturn(inputStream)
 
-        val result = assetReader.getUiPattern(fileName)
+        val result = uiPatternDataStore.getUiPattern(fileName)
 
         assertEquals(3, result?.uiPattern?.size)
     }
