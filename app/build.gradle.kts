@@ -57,6 +57,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
     implementation("androidx.fragment:fragment-ktx:1.7.0-alpha03")
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.0")
     debugImplementation("androidx.fragment:fragment-ktx:1.7.0-alpha03")
     debugImplementation("androidx.fragment:fragment-testing:1.7.0-alpha03")
     implementation("androidx.activity:activity-ktx:1.8.0-alpha07")
@@ -71,6 +72,7 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.47")
     kapt("androidx.room:room-compiler:2.6.0-beta01")
     kapt("androidx.lifecycle:lifecycle-compiler:2.7.0-alpha01")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.8.0")
 
 
     testImplementation("junit:junit:4.13.2")
@@ -82,6 +84,7 @@ dependencies {
     testImplementation("androidx.test:runner:1.5.2")
     testImplementation("androidx.test:core-ktx:1.5.0")
     testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("androidx.test.ext:junit:1.1.5")
 
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
