@@ -1,4 +1,4 @@
-package com.alireza.eliqtask.presentation
+package com.alireza.eliqtask.presentation.weather
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,10 +22,11 @@ class WeatherViewModel @Inject constructor(
     private val foreCastUseCase: ForeCastUseCase
 ) : ViewModel() {
 
-    private val _uiWeatherState = MutableStateFlow<WeatherViewState>(WeatherViewState.Loading)
+    private val _uiWeatherState = MutableStateFlow<WeatherViewState>(WeatherViewState.Loading(true))
     val uiWeatherState = _uiWeatherState.asStateFlow()
 
     init {
+        loadWeather()
     }
 
     fun loadWeather() {
@@ -42,7 +43,7 @@ class WeatherViewModel @Inject constructor(
 
                     is UseCaseModel.Success -> WeatherViewState.WeatherData(
                         (uiPattern as UseCaseModel.Success).data.apply {
-                           pattern=  pattern.filter { it.isVisible }.sortedBy { it.order }
+                            pattern = pattern.filter { it.isVisible }.sortedBy { it.order }
                         },
                         weather.data
                     )
@@ -50,8 +51,14 @@ class WeatherViewModel @Inject constructor(
             }.stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(5_000),
-                initialValue = WeatherViewState.Loading
-            ).collect { state -> _uiWeatherState.value = state }
+                initialValue = WeatherViewState.Loading(true)
+            ).collect { state -> if (state is WeatherViewState.Loading){
+                _uiWeatherState.value = state
+            }else{
+                _uiWeatherState.value = WeatherViewState.Loading(false)
+                _uiWeatherState.value = state
+            }
+            }
         }
     }
 }

@@ -1,11 +1,13 @@
 package com.alireza.eliqtask.domian.model.weather
 
+import android.util.Log
 import com.alireza.eliqtask.data.remote.entity.weather.CurrentWeatherResponse
 import com.alireza.eliqtask.data.remote.entity.weather.DailyResponse
 import com.alireza.eliqtask.data.remote.entity.weather.DailyUnitsResponse
 import com.alireza.eliqtask.data.remote.entity.weather.HourlyResponse
 import com.alireza.eliqtask.data.remote.entity.weather.HourlyUnitsResponse
 import com.alireza.eliqtask.data.remote.entity.weather.WeatherResponse
+import com.alireza.eliqtask.utils.extention.toFormattedString
 
 class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse) {
     private val currentWeather: CurrentWeather by lazy { generateCurrentWeather(weatherResponse.currentWeather) }
@@ -35,14 +37,14 @@ class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse) {
             windDirection = weatherResponse?.winddirection,
             weatherCode = weatherResponse?.weathercode,
             isDay = weatherResponse?.isDay,
-            time = weatherResponse?.time
+            time = weatherResponse?.time.toFormattedString()
         )
 
     private fun generateHourly(hourly: HourlyResponse?, hourlyUnits: HourlyUnitsResponse?): Hourly {
         val hourlyList = hourly?.time?.mapIndexed { index, time ->
             HourlyData(
                 time = time,
-                temperature2m = hourly.temperature2m[index],
+                temperature2m = hourly.temperature_2m[index],
                 weatherCode = hourly.weathercode[index]
             )
         } ?: listOf()
@@ -59,8 +61,8 @@ class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse) {
             DailyData(
                 time = time,
                 weatherCode = daily.weathercode[index],
-                temperature2mMax = daily.temperature2mMax[index],
-                temperature2mMin = daily.temperature2mMin[index]
+                temperature2mMax = daily.temperature_2m_max[index],
+                temperature2mMin = daily.temperature_2m_min[index]
             )
         } ?: listOf()
         return Daily(

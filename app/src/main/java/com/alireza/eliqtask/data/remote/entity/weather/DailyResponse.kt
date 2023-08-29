@@ -3,9 +3,9 @@ package com.alireza.eliqtask.data.remote.entity.weather
 import com.squareup.moshi.Json
 
 data class DailyResponse(
-    @field:Json(name="time"               ) var time             : ArrayList<String> = arrayListOf(),
-    @field:Json(name="weathercode"        ) var weathercode      : ArrayList<Int>    = arrayListOf(),
-    @field:Json(name="temperature_2m_max" ) var temperature2mMax : ArrayList<Double> = arrayListOf(),
-    @field:Json(name="temperature_2m_min" ) var temperature2mMin : ArrayList<Double> = arrayListOf()
+     @Json(name="time"               ) var time             : List<String> = listOf(),
+     @Json(name="weathercode"        ) var weathercode      : List<Int>    = listOf(),
+     @Json(name="temperature_2m_max" ) var temperature_2m_max : List<Double> = listOf(),
+     @Json(name="temperature_2m_min" ) var temperature_2m_min : List<Double> = listOf()
 
 )

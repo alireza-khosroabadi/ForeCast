@@ -1,5 +1,7 @@
 package com.alireza.eliqtask.domian.model.weather
 
+import java.util.Date
+
 data class CurrentWeather(
     var temperature   : Double? = null,
     var windSpeed     : Double? = null,

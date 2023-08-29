@@ -3,10 +3,11 @@ package com.alireza.eliqtask.presentation
 import com.alireza.eliqtask.base.domain.model.UseCaseModel
 import com.alireza.eliqtask.data.local.entity.UiModel
 import com.alireza.eliqtask.data.local.entity.UiPattern
-import com.alireza.eliqtask.domian.model.weather.Hourly
 import com.alireza.eliqtask.domian.model.weather.Weather
 import com.alireza.eliqtask.domian.useCase.foreCast.ForeCastUseCase
 import com.alireza.eliqtask.domian.useCase.uiPattern.UiPatternUseCase
+import com.alireza.eliqtask.presentation.weather.WeatherViewModel
+import com.alireza.eliqtask.presentation.weather.WeatherViewState
 import com.alireza.eliqtask.presentation.rule.MainCoroutineRule
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.take
@@ -18,10 +19,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
-import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 
 @RunWith(MockitoJUnitRunner::class)

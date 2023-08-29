@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class UiPatternRepositoryImpl @Inject constructor(private val uiPatternStore: UiPatterDataStore) : UiPatternRepository {
     override fun uiPattern(): Flow<DataModel<UiPattern>>  = flow {
-        uiPatternStore.getUiPattern("UiPattern")?.let {uiPattern->
+        uiPatternStore.getUiPattern("UiPattern.JSON")?.let {uiPattern->
             emit(DataModel.Success(uiPattern))
         }
     }

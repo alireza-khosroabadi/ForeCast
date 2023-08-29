@@ -3,16 +3,16 @@ package com.alireza.eliqtask.data.remote.entity.weather
 import com.squareup.moshi.Json
 
 data class WeatherResponse(
-    @field:Json(name ="latitude"              ) var latitude             : Double?         = null,
-    @field:Json(name ="longitude"             ) var longitude            : Double?         = null,
-    @field:Json(name ="generationtime_ms"     ) var generationTimeMs     : Double?         = null,
-    @field:Json(name ="utc_offset_seconds"    ) var utcOffsetSeconds     : Int?            = null,
-    @field:Json(name ="timezone"              ) var timezone             : String?         = null,
-    @field:Json(name ="timezone_abbreviation" ) var timezoneAbbreviation : String?         = null,
-    @field:Json(name ="elevation"             ) var elevation            : Int?            = null,
-    @field:Json(name ="current_weather"       ) var currentWeather       : CurrentWeatherResponse? = CurrentWeatherResponse(),
-    @field:Json(name ="hourly_units"          ) var hourlyUnits          : HourlyUnitsResponse?    = HourlyUnitsResponse(),
-    @field:Json(name ="hourly"                ) var hourly               : HourlyResponse?         = HourlyResponse(),
-    @field:Json(name ="daily_units"           ) var dailyUnits           : DailyUnitsResponse?     = DailyUnitsResponse(),
-    @field:Json(name ="daily"                 ) var daily                : DailyResponse?          = DailyResponse()
+     @Json(name ="latitude"              ) var latitude             : Double?         = null,
+     @Json(name ="longitude"             ) var longitude            : Double?         = null,
+     @Json(name ="generationtime_ms"     ) var generationTimeMs     : Double?         = null,
+     @Json(name ="utc_offset_seconds"    ) var utcOffsetSeconds     : Int?            = null,
+     @Json(name ="timezone"              ) var timezone             : String?         = null,
+     @Json(name ="timezone_abbreviation" ) var timezoneAbbreviation : String?         = null,
+     @Json(name ="elevation"             ) var elevation            : Int?            = null,
+     @Json(name ="current_weather"       ) var currentWeather       : CurrentWeatherResponse? = CurrentWeatherResponse(),
+     @Json(name ="hourly_units"          ) var hourlyUnits          : HourlyUnitsResponse?    = HourlyUnitsResponse(),
+     @Json(name ="hourly"                ) var hourly               : HourlyResponse?         = HourlyResponse(),
+     @Json(name ="daily_units"           ) var dailyUnits           : DailyUnitsResponse?     = DailyUnitsResponse(),
+     @Json(name ="daily"                 ) var daily                : DailyResponse?          = DailyResponse()
 )
