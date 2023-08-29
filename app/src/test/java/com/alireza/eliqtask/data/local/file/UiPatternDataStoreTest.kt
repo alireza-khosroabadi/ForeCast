@@ -55,7 +55,7 @@ class UiPatternDataStoreTest{
 
         val result = uiPatternDataStore.getUiPattern(fileName)
 
-        assertEquals(3, result?.uiPattern?.size)
+        assertEquals(3, result?.pattern?.size)
     }
 
 
