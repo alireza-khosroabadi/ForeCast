@@ -6,15 +6,8 @@ import com.alireza.eliqtask.data.remote.api.ForeCastApiService
 import com.alireza.eliqtask.data.remote.entity.weather.WeatherResponse
 import com.alireza.eliqtask.domian.repository.weather.ForeCastRepository
 import com.alireza.eliqtask.utils.network.NetworkConnectivity
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
-
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
