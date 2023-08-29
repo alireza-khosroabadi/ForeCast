@@ -1,10 +1,11 @@
-package com.alireza.eliqtask.data.repository.uiPattern
+package com.alireza.eliqtask.domian.useCase.uiPattern
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.alireza.eliqtask.base.data.dataModel.DataModel
+import com.alireza.eliqtask.base.domain.model.UseCaseModel
 import com.alireza.eliqtask.data.local.entity.UiModel
 import com.alireza.eliqtask.data.local.entity.UiPattern
 import com.alireza.eliqtask.data.local.file.uiPatternStore.UiPatterDataStore
+import com.alireza.eliqtask.data.repository.uiPattern.UiPatternRepositoryImpl
 import com.alireza.eliqtask.domian.repository.uiPattern.UiPatternRepository
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
@@ -18,28 +19,32 @@ import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 
 @RunWith(MockitoJUnitRunner::class)
-class UiPatternRepositoryImplTest {
+class UiPatternUseCaseTest {
 
-    private lateinit var uiPatterDataStore: UiPatterDataStore
     private lateinit var uiPatternRepository: UiPatternRepository
+    private lateinit var uiPatterDataStore: UiPatterDataStore
+    private lateinit var uiPatternUseCase: UiPatternUseCase
 
     @get:Rule
-    val rule = InstantTaskExecutorRule()
+    val  rule = InstantTaskExecutorRule()
 
     @Before
     fun setUp() {
         uiPatterDataStore = mock()
         uiPatternRepository = UiPatternRepositoryImpl(uiPatterDataStore)
+        uiPatternUseCase = UiPatternUseCase(uiPatternRepository)
     }
 
 
+
     @Test
-    fun `return ui pattern success`() = runTest {
+    fun `get correct ui pattern`() = runTest {
         `when`(uiPatterDataStore.getUiPattern(any())).thenReturn(UiPattern(listOf(UiModel("Header",true, 0))))
 
-        uiPatternRepository.uiPattern().collect{response ->
-            assertTrue(response is DataModel.Success)
-            assertEquals(1, (response as DataModel.Success).data.uiPattern.size)
+        uiPatternUseCase().collect{model ->
+            assertTrue(model is UseCaseModel.Success)
+            assertEquals(1 , (model as UseCaseModel.Success).data.uiPattern.size)
+
         }
     }
 }
