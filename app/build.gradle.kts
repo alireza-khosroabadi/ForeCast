@@ -15,8 +15,11 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
+        buildConfigField("String", "BASE_URL", project.properties["BASE_URL"].toString())
     }
 
     buildTypes {
@@ -35,6 +38,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 kapt {
@@ -43,56 +50,89 @@ kapt {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    val coreKtxVersion = "1.10.1"
+    val appCompatVersion = "1.6.1"
+    val materialVersion = "1.9.0"
+    val constraintLayoutVersion = "2.1.4"
+    val multidexVersion = "2.0.1"
+    val retrofitVersion = "2.9.0"
+    val loggingInterceptorVersion = "5.0.0-alpha.11"
+    val lifecycleVersion = "2.7.0-alpha01"
+    val lifecycleExtensionsVersion = "2.2.0"
+    val fragmentVersion = "1.7.0-alpha03"
+    val activityVersion = "1.8.0-alpha07"
+    val moshiVersion = "1.15.0"
+    val moshiKotlinVersion = "1.8.0"
+    val coroutinesVersion = "1.7.3"
+    val roomVersion = "2.6.0-beta01"
+    val hiltVersion = "2.47"
+    val hiltCompilerVersion = "2.44.2"
+    val junitVersion = "4.13.2"
+    val mockitoKotlinVersion = "4.1.0"
+    val mockitoInlineVersion = "2.8.47"
+    val androidxTestVersion = "1.5.0"
+    val androidxTestExtVersion = "1.1.5"
+    val androidxTestRunnerVersion = "1.5.2"
+    val androidxArchCoreVersion = "2.2.0"
+    val espressoVersion = "3.5.1"
 
-    implementation("com.google.dagger:hilt-android:2.47")
-    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.11")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0-alpha01")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0-alpha01")
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
+    implementation("androidx.core:core-ktx:$coreKtxVersion")
+    implementation("androidx.appcompat:appcompat:$appCompatVersion")
+    implementation("com.google.android.material:material:$materialVersion")
+    implementation("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
+    implementation( "androidx.multidex:multidex:$multidexVersion")
 
-    implementation("androidx.fragment:fragment-ktx:1.7.0-alpha03")
-    debugImplementation("androidx.fragment:fragment-ktx:1.7.0-alpha03")
-    debugImplementation("androidx.fragment:fragment-testing:1.7.0-alpha03")
-    implementation("androidx.activity:activity-ktx:1.8.0-alpha07")
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-extensions:$lifecycleExtensionsVersion")
 
-    implementation("androidx.room:room-ktx:2.6.0-beta01")
-    implementation("androidx.room:room-runtime:2.6.0-beta01")
+    implementation("androidx.fragment:fragment-ktx:$fragmentVersion")
+    implementation("androidx.activity:activity-ktx:$activityVersion")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
-    kapt("com.google.dagger:hilt-android-compiler:2.47")
-    kapt("androidx.room:room-compiler:2.6.0-beta01")
-    kapt("androidx.lifecycle:lifecycle-compiler:2.7.0-alpha01")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    implementation("androidx.room:room-runtime:$roomVersion")
 
-
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("com.google.dagger:hilt-android-testing:2.47")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
-    testImplementation("org.mockito:mockito-inline:2.8.47")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-    testImplementation("androidx.test:rules:1.5.0")
-    testImplementation("androidx.test:runner:1.5.2")
-    testImplementation("androidx.test:core-ktx:1.5.0")
-    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion")
+    implementation("com.squareup.moshi:moshi-kotlin:$moshiVersion")
 
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:2.47")
-    androidTestImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
-    androidTestImplementation("org.mockito:mockito-inline:2.8.47")
-    androidTestImplementation("androidx.test.ext:junit:2.47")
-    androidTestImplementation("androidx.arch.core:core-testing:2.2.0")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycleVersion")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshiKotlinVersion")
 
 
-    kaptAndroidTest("com.google.dagger:hilt-compiler:2.44.2")
+    debugImplementation("androidx.fragment:fragment-ktx:$fragmentVersion")
+    debugImplementation("androidx.fragment:fragment-testing:$fragmentVersion")
+
+
+    testImplementation("junit:junit:$junitVersion")
+    testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion")
+    testImplementation("org.mockito:mockito-inline:$mockitoInlineVersion")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+    testImplementation("androidx.test:rules:$androidxTestVersion")
+    testImplementation("androidx.test:runner:$androidxTestRunnerVersion")
+    testImplementation("androidx.test:core-ktx:$androidxTestVersion")
+    testImplementation("androidx.arch.core:core-testing:$androidxArchCoreVersion")
+    testImplementation("androidx.test.ext:junit:$androidxTestExtVersion")
+
+
+    androidTestImplementation("androidx.test.ext:junit:$androidxTestExtVersion")
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espressoVersion")
+    androidTestImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    androidTestImplementation("org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion")
+    androidTestImplementation("org.mockito:mockito-inline:$mockitoInlineVersion")
+    androidTestImplementation("androidx.arch.core:core-testing:$androidxArchCoreVersion")
+
+
+    kaptAndroidTest("com.google.dagger:hilt-compiler:$hiltCompilerVersion")
 }

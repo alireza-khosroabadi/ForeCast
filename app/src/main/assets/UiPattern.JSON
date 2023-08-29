@@ -1,0 +1,16 @@
+{
+  "uiPattern": [
+    {
+      "type": "Title",
+      "isVisible": true
+    },
+    {
+      "type": "Hourly",
+      "isVisible": true
+    },
+    {
+      "type": "Daily",
+      "isVisible": true
+    }
+  ]
+}
