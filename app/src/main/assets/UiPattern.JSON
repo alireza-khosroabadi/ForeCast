@@ -2,15 +2,18 @@
   "uiPattern": [
     {
       "type": "Title",
-      "isVisible": true
+      "isVisible": true,
+      "order": 0
     },
     {
       "type": "Hourly",
-      "isVisible": true
+      "isVisible": true,
+      "order": 1
     },
     {
       "type": "Daily",
-      "isVisible": true
+      "isVisible": true,
+      "order": 3
     }
   ]
 }

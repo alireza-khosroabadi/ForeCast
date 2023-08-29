@@ -6,8 +6,9 @@ import com.alireza.eliqtask.data.local.file.uiPatternStore.UiPatterDataStore
 import com.alireza.eliqtask.domian.repository.uiPattern.UiPatternRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class UiPatternRepositoryImpl(private val uiPatternStore: UiPatterDataStore) : UiPatternRepository {
+class UiPatternRepositoryImpl @Inject constructor(private val uiPatternStore: UiPatterDataStore) : UiPatternRepository {
     override fun uiPattern(): Flow<DataModel<UiPattern>>  = flow {
         uiPatternStore.getUiPattern("UiPattern")?.let {uiPattern->
             emit(DataModel.Success(uiPattern))

@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 data class WeatherResponse(
     @field:Json(name ="latitude"              ) var latitude             : Double?         = null,
     @field:Json(name ="longitude"             ) var longitude            : Double?         = null,
-    @field:Json(name ="generationtime_ms"     ) var generationtimeMs     : Double?         = null,
+    @field:Json(name ="generationtime_ms"     ) var generationTimeMs     : Double?         = null,
     @field:Json(name ="utc_offset_seconds"    ) var utcOffsetSeconds     : Int?            = null,
     @field:Json(name ="timezone"              ) var timezone             : String?         = null,
     @field:Json(name ="timezone_abbreviation" ) var timezoneAbbreviation : String?         = null,
