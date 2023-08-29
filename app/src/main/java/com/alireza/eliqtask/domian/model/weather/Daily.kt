@@ -1,11 +1,11 @@
 package com.alireza.eliqtask.domian.model.weather
 
 data class Daily(
-    var timeUnit             : String,
-    var weatherCodeUnit      : String,
-    var temperature2mMaxUnit : String,
-    var temperature2mMinUnit : String,
-    var data                 : List<DailyData>
+    var timeUnit             : String="",
+    var weatherCodeUnit      : String="",
+    var temperature2mMaxUnit : String="",
+    var temperature2mMinUnit : String="",
+    var data                 : List<DailyData> = listOf()
 )
 
 data class DailyData(
