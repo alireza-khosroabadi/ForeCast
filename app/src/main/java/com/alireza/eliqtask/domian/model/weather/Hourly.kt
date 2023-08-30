@@ -12,4 +12,6 @@ data class HourlyData(
     var temperature2m   : String,
     var weatherCode     : WeatherStatus,
     var precipitationProbability            : String
-)
+){
+    var isDay = 0
+}
