@@ -54,6 +54,7 @@ dependencies {
     val coreKtxVersion = "1.10.1"
     val appCompatVersion = "1.6.1"
     val materialVersion = "1.9.0"
+    val swipeToRefreshVersion = "1.2.0-alpha01"
     val constraintLayoutVersion = "2.1.4"
     val multidexVersion = "2.0.1"
     val retrofitVersion = "2.9.0"
@@ -82,6 +83,8 @@ dependencies {
     implementation("com.google.android.material:material:$materialVersion")
     implementation("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
     implementation( "androidx.multidex:multidex:$multidexVersion")
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:$swipeToRefreshVersion")
 
     implementation("com.google.dagger:hilt-android:$hiltVersion")
 

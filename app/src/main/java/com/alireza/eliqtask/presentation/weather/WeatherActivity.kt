@@ -86,6 +86,11 @@ class WeatherActivity : AppCompatActivity() {
         mBinding.errorLayout.btnRetry.setOnClickListener {
             viewModel.loadWeather()
         }
+
+        mBinding.refreshLayout.setOnRefreshListener{
+            viewModel.loadWeather()
+            mBinding.refreshLayout.isRefreshing = false
+        }
     }
 
 }
