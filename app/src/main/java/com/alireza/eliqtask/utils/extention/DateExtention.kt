@@ -7,3 +7,8 @@ fun Date?.toFormattedString():String{
     if (this == null) return ""
     return SimpleDateFormat("yyyy-MM-dd HH:mm").format(this)
 }
+
+fun Date?.toFormattedTime():String{
+    if (this == null) return ""
+    return SimpleDateFormat("HH:mm").format(this)
+}

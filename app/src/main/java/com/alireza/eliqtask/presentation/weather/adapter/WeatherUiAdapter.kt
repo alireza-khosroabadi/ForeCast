@@ -6,9 +6,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.alireza.eliqtask.data.local.entity.UiModel
+import com.alireza.eliqtask.data.local.entity.ViewPattern
 import com.alireza.eliqtask.databinding.CurrentDayWeatherHolderBinding
+import com.alireza.eliqtask.databinding.DailyWeatherHolderBinding
+import com.alireza.eliqtask.databinding.HourlyWeatherHolderBinding
 import com.alireza.eliqtask.domian.model.weather.Weather
+import com.alireza.eliqtask.presentation.customeUi.dailyWeather.DailyWeatherAdapter
 import com.alireza.eliqtask.presentation.weather.adapter.viewHolder.CurrentDayViewHolder
+import com.alireza.eliqtask.presentation.weather.adapter.viewHolder.DailyViewHolder
+import com.alireza.eliqtask.presentation.weather.adapter.viewHolder.HourlyViewHolder
 
 class UiPatternDiffCallback : DiffUtil.ItemCallback<UiModel>() {
 
@@ -25,8 +31,6 @@ class UiPatternDiffCallback : DiffUtil.ItemCallback<UiModel>() {
 
 class WeatherUiAdapter : ListAdapter<UiModel, RecyclerView.ViewHolder>(UiPatternDiffCallback()) {
 
-
-    private val uiPattern = mutableListOf<UiModel>()
     private var weatherDetail: Weather? = null
     private var inflater:LayoutInflater? = null
 
@@ -34,14 +38,27 @@ class WeatherUiAdapter : ListAdapter<UiModel, RecyclerView.ViewHolder>(UiPattern
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (inflater == null)
             inflater = LayoutInflater.from(parent.context)
-        return CurrentDayViewHolder(CurrentDayWeatherHolderBinding.inflate(inflater!!,parent,false))
+        return when(viewType){
+            ViewPattern.CurrentWeather.ordinal -> CurrentDayViewHolder(CurrentDayWeatherHolderBinding.inflate(inflater!!,parent,false))
+            ViewPattern.Hourly.ordinal -> HourlyViewHolder(HourlyWeatherHolderBinding.inflate(inflater!!,parent,false))
+            ViewPattern.Daily.ordinal -> DailyViewHolder(DailyWeatherHolderBinding.inflate(inflater!!,parent,false))
+            else -> CurrentDayViewHolder(CurrentDayWeatherHolderBinding.inflate(inflater!!,parent,false))
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        weatherDetail?.currentWeather?.let { (holder as CurrentDayViewHolder).onBind(it) }
+       when(holder){
+           is CurrentDayViewHolder ->  weatherDetail?.currentWeather?.let { holder.onBind(it) }
+           is HourlyViewHolder ->  weatherDetail?.hourly?.let { holder.onBind(it) }
+           is DailyViewHolder ->  weatherDetail?.daily?.let { holder.onBind(it) }
+       }
     }
 
     fun setWeatherDetails(weather: Weather){
         weatherDetail = weather
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return getItem(position).type.ordinal
     }
 }

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.alireza.eliqtask.presentation.customeUi.hourlyWeather.HourlyWeatherView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/hourly_weather"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>

@@ -7,6 +7,6 @@ import com.alireza.eliqtask.domian.model.weather.CurrentWeather
 class CurrentDayViewHolder(private val mBinding: CurrentDayWeatherHolderBinding) :
     RecyclerView.ViewHolder(mBinding.root) {
     fun onBind(weather: CurrentWeather) {
-        mBinding.location.text = weather.time
+        mBinding.currentWeather.updateWeather(weather)
     }
 }

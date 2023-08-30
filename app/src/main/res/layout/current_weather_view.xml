@@ -1,0 +1,174 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_gradiant_background"
+    android:padding="@dimen/padding_16dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Berlin" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_24dp"
+        android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/horizontal_50_percent"
+        app:layout_constraintTop_toBottomOf="@id/tv_location"
+        tools:text="Sunday | Nov 14" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:letterSpacing="0"
+        android:lineSpacingExtra="-22sp"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/tv_date"
+        app:layout_constraintStart_toStartOf="@id/tv_date"
+        app:layout_constraintTop_toBottomOf="@id/tv_date"
+        tools:text="24" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/tv_date"
+        app:layout_constraintStart_toStartOf="@id/tv_date"
+        app:layout_constraintTop_toBottomOf="@id/tv_temp"
+        tools:text="Heavy rain" />
+
+
+    <ImageView
+        android:id="@+id/img_weather"
+        android:layout_width="@dimen/fix_size_0dp"
+        android:layout_height="@dimen/fix_size_0dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_weather"
+        app:layout_constraintEnd_toEndOf="@id/horizontal_50_percent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_date" />
+
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/boarder_1dp"
+        android:layout_marginTop="@dimen/margin_24dp"
+        android:background="@color/fade_blue"
+        app:layout_constraintTop_toBottomOf="@id/img_weather" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/wind_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@id/horizontal_50_percent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/separator">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_32dp"
+            android:layout_height="@dimen/icon_size_32dp"
+            android:rotation="270"
+            android:src="@drawable/carbon_location_current" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_wind_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                tools:text="3.7 km/h" />
+
+            <TextView
+                android:id="@+id/tv_wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wind"
+                android:textColor="@color/white"
+                tools:text="Wind" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/pressure_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/horizontal_50_percent"
+        app:layout_constraintTop_toBottomOf="@id/separator">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size_32dp"
+            android:layout_height="@dimen/icon_size_32dp"
+            android:src="@drawable/fluent_temperature_24_regular" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                tools:text="1010 mbar" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pressure"
+                android:textColor="@color/white"
+                tools:text="Pressure" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_50_percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
