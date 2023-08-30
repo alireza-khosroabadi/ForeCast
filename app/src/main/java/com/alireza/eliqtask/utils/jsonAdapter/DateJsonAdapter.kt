@@ -9,6 +9,10 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+/**
+ * Moshi library needs to Adapter to convert string formatted date to Date model,
+ * in this adapter I convert "yyyy-MM-dd'T'HH:mm" received from server API to Date.
+ * */
 class DateJsonAdapter : JsonAdapter<Date>() {
     private val dateFormat = SimpleDateFormat(SERVER_FORMAT, Locale.getDefault())
 

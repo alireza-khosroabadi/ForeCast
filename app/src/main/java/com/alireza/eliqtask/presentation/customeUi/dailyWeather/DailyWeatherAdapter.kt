@@ -26,7 +26,7 @@ class DailyWeatherAdapter: ListAdapter<DailyData,DailyWeatherAdapter.ViewHolder 
         fun onBind(data: DailyData){
             binding.tvTemp.text = data.temperature
             binding.tvDay.text = data.time
-            binding.tvRain.text = data.weatherCode.toString()
+            binding.tvRain.setText(data.weatherCode.title)
             binding.imgWeatherStatus.setImageResource(data.weatherCode.iconDay)
         }
     }

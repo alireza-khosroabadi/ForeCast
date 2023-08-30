@@ -4,6 +4,14 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.alireza.eliqtask.R
 
+
+/**
+ * Server API send and Int code for every type of weather. so we can not use it easily in UI or we should
+ * use lots of if or when to show the user friendly items in UI, so I create this model it contain three item
+ * @property iconDay is drawableRes related to day icon
+ * @property iconNight is drawableRes related to night icon
+ * @property title is string resources related to its title
+ * */
 enum class WeatherStatus(
     @DrawableRes var iconDay: Int,
     @DrawableRes var iconNight: Int,

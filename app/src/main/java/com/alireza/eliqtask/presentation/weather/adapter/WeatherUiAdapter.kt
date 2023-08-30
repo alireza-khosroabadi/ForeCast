@@ -16,6 +16,15 @@ import com.alireza.eliqtask.presentation.weather.adapter.viewHolder.CurrentDayVi
 import com.alireza.eliqtask.presentation.weather.adapter.viewHolder.DailyViewHolder
 import com.alireza.eliqtask.presentation.weather.adapter.viewHolder.HourlyViewHolder
 
+
+/**
+ * I used recycler view to build dynamic UI from server, so we should have an Adapter with different
+ * viewTypes and every viewType related to a viewHolder to build ui. using this structure is a popular
+ * and performant way to create dynamic UIs.
+ * I use ListAdapter to build UI more performant than legacy RecyclerViewAdapter.
+ * I pass two different type of data to this adapter, UiPattern and Weather.
+ * Use UiPattern to select between different view types and Weather to fill UI with its data.
+ * */
 class UiPatternDiffCallback : DiffUtil.ItemCallback<UiModel>() {
 
     override fun areItemsTheSame(oldItem: UiModel, newItem: UiModel): Boolean {

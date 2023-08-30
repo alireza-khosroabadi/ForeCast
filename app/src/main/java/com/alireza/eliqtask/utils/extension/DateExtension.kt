@@ -1,7 +1,11 @@
-package com.alireza.eliqtask.utils.extention
+package com.alireza.eliqtask.utils.extension
 
 import java.text.SimpleDateFormat
 import java.util.Date
+
+/**
+ * Use this extension functions to convert Date to string models
+ * */
 
 fun Date?.toFormattedDateTime():String{
     if (this == null) return ""
