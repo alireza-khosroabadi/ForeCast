@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/primary_dark"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.weather.WeatherActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/base_ui"
+        android:orientation="vertical"
+        android:background="@color/primary_dark"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/padding_16dp"/>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:indeterminate="true"
+        android:layout_gravity="center"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/white"
+        android:layout_width="@dimen/fix_size_50dp"
+        android:layout_height="@dimen/fix_size_50dp"/>
+
+
+    <include android:id="@+id/error_layout" layout="@layout/error_layout"/>
+
+</FrameLayout>

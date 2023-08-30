@@ -1,0 +1,19 @@
+{
+  "pattern": [
+    {
+      "type": "CurrentWeather",
+      "isVisible": true,
+      "order": 0
+    },
+    {
+      "type": "Hourly",
+      "isVisible": true,
+      "order": 1
+    },
+    {
+      "type": "Daily",
+      "isVisible": true,
+      "order": 3
+    }
+  ]
+}

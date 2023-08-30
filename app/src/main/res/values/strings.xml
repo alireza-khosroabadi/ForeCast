@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">EliqTask</string>
+    <string name="wind">Wind</string>
+    <string name="pressure">Pressure</string>
+    <string name="forcats_for_7_days">Forcats for 7 Days</string>
+    <string name="Clear">Clear</string>
+    <string name="partly_cloudy">partly cloudy</string>
+    <string name="fog">Fog</string>
+    <string name="drizzle">Drizzle</string>
+    <string name="freezing">Freezing</string>
+    <string name="rain">Rain</string>
+    <string name="freezing_rain">Freezing Rain</string>
+    <string name="snow_fall">Snow Fall</string>
+    <string name="snow">Snow</string>
+    <string name="rain_showers">Rain Showers</string>
+    <string name="snow_showers">Snow Showers</string>
+    <string name="thunderstorm">Thunderstorm</string>
+    <string name="freezing_drizzle">Freezing Drizzle</string>
+    <string name="retry">retry</string>
 </resources>

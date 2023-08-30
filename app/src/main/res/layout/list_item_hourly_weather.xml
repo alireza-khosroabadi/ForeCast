@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center|center_horizontal"
+    android:background="@color/primary"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/padding_16dp"
+    android:paddingVertical="@dimen/padding_16dp">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        tools:string="10:00" />
+
+    <ImageView
+        android:id="@+id/img_weather_status"
+        android:layout_width="@dimen/icon_size_32dp"
+        android:layout_height="@dimen/icon_size_32dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_8dp"
+        tools:src="@drawable/fluent_weather_partly_cloudy_day_24_filled" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/margin_2dp"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        tools:string="20/24" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_rain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+        android:textColor="@color/white"
+        tools:string="rain" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
