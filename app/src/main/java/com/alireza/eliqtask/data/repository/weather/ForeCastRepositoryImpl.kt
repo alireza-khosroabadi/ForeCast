@@ -7,8 +7,10 @@ import com.alireza.eliqtask.data.remote.entity.weather.WeatherResponse
 import com.alireza.eliqtask.domian.repository.weather.ForeCastRepository
 import com.alireza.eliqtask.utils.network.NetworkConnectivity
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class ForeCastRepositoryImpl @Inject constructor(
@@ -18,19 +20,20 @@ class ForeCastRepositoryImpl @Inject constructor(
     override fun foreCast(): Flow<DataModel<WeatherResponse>> {
         if (internetConnection.isInternetOn().not())
             return flowOf(DataModel.Error(ErrorModel(10, "network connection error")))
-        return flow {
-            val response = apiService.foreCast()
+        val result= flow { emit(apiService.foreCast()) }.map { response ->
             if (response.isSuccessful) {
                 val successData = response.body()
                 if (successData != null) {
-                    emit(DataModel.Success(successData))
+                    DataModel.Success(successData)
                 } else {
-                    emit(DataModel.Error(ErrorModel(0, "Empty response body")))
+                    DataModel.Error(ErrorModel(0, "Empty response body"))
                 }
             } else {
                 val errorData = response.errorBody()?.string() ?: "Unknown error"
-                emit(DataModel.Error(ErrorModel(response.code(), errorData)))
+                DataModel.Error(ErrorModel(response.code(), errorData))
             }
-        }
+        }.catch { e-> e.printStackTrace() }
+
+       return  result
     }
 }

@@ -39,7 +39,7 @@ class UiPatternRepositoryImplTest {
 
         uiPatternRepository.uiPattern().collect{response ->
             assertTrue(response is DataModel.Success)
-            assertEquals(1, (response as DataModel.Success).data.uiPattern.size)
+            assertEquals(1, (response as DataModel.Success).data.pattern.size)
         }
     }
 }

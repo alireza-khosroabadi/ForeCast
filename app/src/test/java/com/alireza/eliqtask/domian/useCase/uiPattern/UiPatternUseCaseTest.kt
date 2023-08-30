@@ -43,7 +43,7 @@ class UiPatternUseCaseTest {
 
         uiPatternUseCase().collect{model ->
             assertTrue(model is UseCaseModel.Success)
-            assertEquals(1 , (model as UseCaseModel.Success).data.uiPattern.size)
+            assertEquals(1 , (model as UseCaseModel.Success).data.pattern.size)
 
         }
     }

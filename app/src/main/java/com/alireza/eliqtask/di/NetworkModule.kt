@@ -3,6 +3,7 @@ package com.alireza.eliqtask.di
 
 import com.alireza.eliqtask.BuildConfig
 import com.alireza.eliqtask.data.remote.api.ForeCastApiService
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,11 +26,12 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
+        moshi: Moshi
     ): Retrofit {
         val builder = Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
 
         return builder.build()
     }

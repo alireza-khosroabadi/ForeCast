@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- FixSize -->
+    <dimen name="fix_size_0dp">0dp</dimen>
+    <dimen name="fix_size_2dp">2dp</dimen>
+    <dimen name="fix_size_4dp">4dp</dimen>
+    <dimen name="fix_size_8dp">8dp</dimen>
+    <dimen name="fix_size_16dp">16dp</dimen>
+    <dimen name="fix_size_32dp">32dp</dimen>
+    <dimen name="fix_size_50dp">50dp</dimen>
+    <dimen name="fix_size_64dp">64dp</dimen>
+    <dimen name="fix_size_80dp">80dp</dimen>
+    <dimen name="fix_size_100dp">100dp</dimen>
+    <dimen name="fix_size_120dp">120dp</dimen>
+    <dimen name="fix_size_150dp">150dp</dimen>
+
+    <!-- Margins -->
+    <dimen name="margin_1dp">1dp</dimen>
+    <dimen name="margin_2dp">2dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
+    <dimen name="margin_64dp">64dp</dimen>
+
+
+    <!-- Paddings -->
+    <dimen name="padding_1dp">1dp</dimen>
+    <dimen name="padding_2dp">2dp</dimen>
+    <dimen name="padding_4dp">4dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="padding_16dp">16dp</dimen>
+    <dimen name="padding_32dp">32dp</dimen>
+    <dimen name="padding_64dp">64dp</dimen>
+
+    <!-- Radius -->
+    <dimen name="radius_2dp">2dp</dimen>
+    <dimen name="radius_4dp">4dp</dimen>
+    <dimen name="radius_8dp">8dp</dimen>
+    <dimen name="radius_16dp">16dp</dimen>
+    <dimen name="radius_32dp">32dp</dimen>
+    <dimen name="radius_40dp">40dp</dimen>
+    <dimen name="radius_64dp">64dp</dimen>
+
+    <!-- Border -->
+    <dimen name="boarder_0dp">0dp</dimen>
+    <dimen name="boarder_1dp">1dp</dimen>
+    <dimen name="boarder_2dp">2dp</dimen>
+    <dimen name="boarder_3dp">3dp</dimen>
+    <dimen name="boarder_4dp">4dp</dimen>
+
+
+    <!-- Icon -->
+    <dimen name="icon_size_24dp">24dp</dimen>
+    <dimen name="icon_size_32dp">32dp</dimen>
+    <dimen name="icon_size_60dp">60dp</dimen>
+    <dimen name="icon_size_80dp">80dp</dimen>
+</resources>

@@ -6,8 +6,9 @@ import com.alireza.eliqtask.data.local.entity.UiPattern
 import com.alireza.eliqtask.domian.repository.uiPattern.UiPatternRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class UiPatternUseCase(private val uiPatternRepository: UiPatternRepository) {
+class UiPatternUseCase @Inject constructor(private val uiPatternRepository: UiPatternRepository) {
 
     operator fun invoke(): Flow<UseCaseModel<UiPattern>> {
         return uiPatternRepository.uiPattern()

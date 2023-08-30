@@ -1,7 +1,7 @@
 {
-  "uiPattern": [
+  "pattern": [
     {
-      "type": "Title",
+      "type": "CurrentWeather",
       "isVisible": true,
       "order": 0
     },

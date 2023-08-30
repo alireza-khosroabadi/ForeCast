@@ -19,6 +19,7 @@ class ForeCastUseCase @Inject constructor(private val foreCastRepository: ForeCa
                 is DataModel.Success -> UseCaseModel.Success(WeatherResponseModelMapper(dataModel.data).toDomainModel())
             }
         }.catch { exception ->
+            exception.printStackTrace()
             emit(UseCaseModel.Exception(exception))
         }
     }
