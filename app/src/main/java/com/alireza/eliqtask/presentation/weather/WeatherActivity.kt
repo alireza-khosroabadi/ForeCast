@@ -3,6 +3,7 @@ package com.alireza.eliqtask.presentation.weather
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -18,12 +19,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class WeatherActivity : AppCompatActivity() {
 
-    private var _mBinding: ActivityWeatherBinding?=null
+    private var _mBinding: ActivityWeatherBinding? = null
     private val mBinding get() = _mBinding!!
 
     private val viewModel: WeatherViewModel by viewModels()
     private val homeAdapter: WeatherUiAdapter by lazy { WeatherUiAdapter() }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +31,7 @@ class WeatherActivity : AppCompatActivity() {
         inflateView()
         setupMainUiRecyclerView()
         observeUiState()
+        setupUiListener()
     }
 
     private fun inflateView() {
@@ -45,12 +46,23 @@ class WeatherActivity : AppCompatActivity() {
     private fun observeUiState() {
         lifecycleScope.launch {
             viewModel.uiWeatherState
-                .flowWithLifecycle(lifecycle,Lifecycle.State.STARTED)
-                .collect{state->
-                    when(state){
-                        is WeatherViewState.ErrorData -> showError(state.error)
-                        is WeatherViewState.Loading -> showLoading(state.isLoading)
-                        is WeatherViewState.WeatherData -> showData(state.weather,state.uiPattern)
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collect { state ->
+                    when (state) {
+                        is WeatherViewState.ErrorData -> {
+                            showLoading(false)
+                            showError(true, state.error)
+                        }
+
+                        is WeatherViewState.Loading -> {
+                            showError(false)
+                            showLoading(state.isLoading)
+                        }
+
+                        is WeatherViewState.WeatherData -> {
+                            showLoading(false)
+                            showData(state.weather, state.uiPattern)
+                        }
                     }
                 }
         }
@@ -62,10 +74,18 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun showLoading(loading: Boolean) {
-       // TODO("Not yet implemented")
+        mBinding.progress.isVisible = loading
     }
 
-    private fun showError(error: ErrorModel) {
-       // TODO("Not yet implemented")
+    private fun showError(isError: Boolean, error: ErrorModel? = null) {
+        mBinding.errorLayout.errorLayoutContainer.isVisible = isError
+        mBinding.errorLayout.tvError.text = error?.errorMessage
     }
+
+    private fun setupUiListener() {
+        mBinding.errorLayout.btnRetry.setOnClickListener {
+            viewModel.loadWeather()
+        }
+    }
+
 }

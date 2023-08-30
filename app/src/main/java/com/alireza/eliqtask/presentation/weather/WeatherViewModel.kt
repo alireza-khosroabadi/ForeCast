@@ -8,6 +8,7 @@ import com.alireza.eliqtask.domian.useCase.foreCast.ForeCastUseCase
 import com.alireza.eliqtask.domian.useCase.uiPattern.UiPatternUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -55,7 +56,6 @@ class WeatherViewModel @Inject constructor(
             ).collect { state -> if (state is WeatherViewState.Loading){
                 _uiWeatherState.value = state
             }else{
-                _uiWeatherState.value = WeatherViewState.Loading(false)
                 _uiWeatherState.value = state
             }
             }

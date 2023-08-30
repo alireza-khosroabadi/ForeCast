@@ -16,4 +16,5 @@
     <string name="snow_showers">Snow Showers</string>
     <string name="thunderstorm">Thunderstorm</string>
     <string name="freezing_drizzle">Freezing Drizzle</string>
+    <string name="retry">retry</string>
 </resources>
