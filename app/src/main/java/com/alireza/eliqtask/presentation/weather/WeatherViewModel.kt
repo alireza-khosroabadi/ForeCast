@@ -30,6 +30,10 @@ class WeatherViewModel @Inject constructor(
         loadWeather()
     }
 
+/**
+ * because I need to pass Weather and UiPattern data to Activity together I use combine to combine this two model and create a
+ * wrapper class to pass to Activity
+ * */
     fun loadWeather() {
         viewModelScope.launch(Dispatchers.IO) {
             combine(uiPatternUseCase(), foreCastUseCase()) { uiPattern, weather ->

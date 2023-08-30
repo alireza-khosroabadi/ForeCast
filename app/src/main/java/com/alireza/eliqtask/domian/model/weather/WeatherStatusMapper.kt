@@ -2,6 +2,11 @@ package com.alireza.eliqtask.domian.model.weather
 
 import com.alireza.eliqtask.data.remote.entity.weather.WeatherStatus
 
+
+/**
+ * we receive an integer to define weather situation, so i create an enum class @see(WeatherStatus)
+ * and in this function I mapped codes with related status.
+ * */
 fun weatherStatusFromInt(code: Int?): WeatherStatus = when (code) {
     0 -> WeatherStatus.Clear
     1, 2, 3 -> WeatherStatus.PartlyCloudy
