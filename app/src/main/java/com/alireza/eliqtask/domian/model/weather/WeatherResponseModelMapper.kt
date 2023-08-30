@@ -1,21 +1,22 @@
 package com.alireza.eliqtask.domian.model.weather
 
-import android.util.Log
+import com.alireza.eliqtask.base.constant.DEGREE_SYMBOL
 import com.alireza.eliqtask.data.remote.entity.weather.CurrentWeatherResponse
 import com.alireza.eliqtask.data.remote.entity.weather.DailyResponse
 import com.alireza.eliqtask.data.remote.entity.weather.DailyUnitsResponse
 import com.alireza.eliqtask.data.remote.entity.weather.HourlyResponse
 import com.alireza.eliqtask.data.remote.entity.weather.HourlyUnitsResponse
 import com.alireza.eliqtask.data.remote.entity.weather.WeatherResponse
-import com.alireza.eliqtask.utils.extention.toFormattedString
+import com.alireza.eliqtask.utils.extention.toFormattedDate
+import com.alireza.eliqtask.utils.extention.toFormattedDateTime
 import com.alireza.eliqtask.utils.extention.toFormattedTime
-import java.time.LocalDate
 import java.util.Calendar
 import java.util.Date
 
 class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse) {
     private val currentWeather: CurrentWeather by lazy {
         generateCurrentWeather(
+            weatherResponse.timezone?:"",
             weatherResponse.currentWeather,
             weatherResponse.hourlyUnits
         )
@@ -25,7 +26,7 @@ class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse) {
 
     init {
         daily = generateDaily(weatherResponse.daily, weatherResponse.dailyUnits)
-        hourly = generateHourly(weatherResponse.hourly, weatherResponse.hourlyUnits)
+        hourly = generateHourly(weatherResponse.currentWeather?.time,weatherResponse.hourly, weatherResponse.hourlyUnits)
     }
 
     fun toDomainModel(): Weather {
@@ -40,34 +41,37 @@ class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse) {
 
 
     private fun generateCurrentWeather(
+        location: String,
         weatherResponse: CurrentWeatherResponse?,
         units: HourlyUnitsResponse?
     ): CurrentWeather =
         CurrentWeather(
-            temperature = "${weatherResponse?.temperature} ${units?.temperature2m}",
+            temperature = "${weatherResponse?.temperature}$DEGREE_SYMBOL",
             windSpeed = "${weatherResponse?.windspeed} ${units?.windspeed10m}",
             windDirection = weatherResponse?.winddirection,
             weatherCode = weatherStatusFromInt(weatherResponse?.weathercode),
             isDay = weatherResponse?.isDay,
-            time = weatherResponse?.time.toFormattedString(),
-//            location = weatherResponse?. TODO
+            time = weatherResponse?.time.toFormattedDateTime(),
+            location = location
         )
 
-    private fun generateHourly(hourly: HourlyResponse?, hourlyUnits: HourlyUnitsResponse?): Hourly {
+    private fun generateHourly(
+        date: Date?,
+        hourly: HourlyResponse?,
+        hourlyUnits: HourlyUnitsResponse?
+    ): Hourly {
         val todayDay = today()
         val hourlyList = hourly?.time?.map { date -> getTodayDate(date) }
             ?.filter { it.get(Calendar.DAY_OF_YEAR) == todayDay }?.mapIndexed { index, time ->
             HourlyData(
                 time = time.time.toFormattedTime(),
-                temperature2m = "${hourly.temperature_2m[index]} ${hourlyUnits?.temperature2m}",
+                temperature2m = "${hourly.temperature_2m[index]}$DEGREE_SYMBOL",
                 weatherCode = weatherStatusFromInt(hourly.weathercode[index]),
-                rain = "${hourly.rain[index]} ${hourlyUnits?.rain}",
-                surfacePressure = "${hourly.surfacePressure[index]} ${hourlyUnits?.surfacePressure}",
-                windSpeed10m = "${hourly.windspeed10m[index]} ${hourlyUnits?.windspeed10m}"
+                precipitationProbability = "${hourly.precipitationProbability[index]} ${hourlyUnits?.precipitationProbability}"
             )
         } ?: listOf()
         return Hourly(
-            timeUnit = hourlyUnits?.time ?: "",
+            timeUnit = date.toFormattedDate(),
             data = hourlyList
         )
     }
@@ -86,7 +90,7 @@ class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse) {
             DailyData(
                 time = time,
                 weatherCode = weatherStatusFromInt(daily.weathercode[index]),
-                temperature = "${daily.temperature_2m_min[index]}/${daily.temperature_2m_max[index]} ${dailyUnits?.temperature2mMax}",
+                temperature = "${daily.temperature_2m_min[index]}/${daily.temperature_2m_max[index]}${dailyUnits?.temperature2mMax}",
                 windSpeed10mMax = "${daily.windspeed10mMax[index]} ${dailyUnits?.windspeed10mMax}"
             )
         } ?: listOf()

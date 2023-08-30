@@ -26,7 +26,7 @@ class HourlyWeatherAdapter: ListAdapter<HourlyData,HourlyWeatherAdapter.ViewHold
         fun onBind(data: HourlyData){
             binding.tvTemp.text = data.temperature2m
             binding.tvHour.text = data.time
-            binding.tvRain.text = data.rain
+            binding.tvRain.text = data.precipitationProbability
             binding.imgWeatherStatus.setImageResource(data.weatherCode.iconDay)
         }
     }

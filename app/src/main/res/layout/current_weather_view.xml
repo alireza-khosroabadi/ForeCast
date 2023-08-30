@@ -74,7 +74,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/boarder_1dp"
         android:layout_marginTop="@dimen/margin_24dp"
-        android:background="@color/fade_blue"
+        android:background="@color/divider"
         app:layout_constraintTop_toBottomOf="@id/img_weather" />
 
 
@@ -92,8 +92,7 @@
         <ImageView
             android:layout_width="@dimen/icon_size_32dp"
             android:layout_height="@dimen/icon_size_32dp"
-            android:rotation="270"
-            android:src="@drawable/carbon_location_current" />
+            android:src="@drawable/fluent_weather_squalls_24_regular" />
 
 
         <androidx.appcompat.widget.LinearLayoutCompat
