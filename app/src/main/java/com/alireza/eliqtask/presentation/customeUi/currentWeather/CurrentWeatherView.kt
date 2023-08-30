@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.alireza.eliqtask.databinding.CurrentWeatherViewBinding
 import com.alireza.eliqtask.domian.model.weather.CurrentWeather
-import com.alireza.eliqtask.utils.extention.getCorrectIconBasedOnDayLight
+import com.alireza.eliqtask.utils.extension.getCorrectIconBasedOnDayLight
 
 class CurrentWeatherView @JvmOverloads constructor(
     ctx: Context,
