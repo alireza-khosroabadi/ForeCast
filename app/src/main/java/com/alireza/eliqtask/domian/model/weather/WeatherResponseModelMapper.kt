@@ -68,7 +68,9 @@ class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse) {
                 temperature2m = "${hourly.temperature_2m[index]}$DEGREE_SYMBOL",
                 weatherCode = weatherStatusFromInt(hourly.weathercode[index]),
                 precipitationProbability = "${hourly.precipitationProbability[index]} ${hourlyUnits?.precipitationProbability}"
-            )
+            ).apply {
+                isDay = if (time.get(Calendar.HOUR_OF_DAY) < 6 || time.get(Calendar.HOUR_OF_DAY) > 18) 1 else 0
+            }
         } ?: listOf()
         return Hourly(
             timeUnit = date.toFormattedDate(),
