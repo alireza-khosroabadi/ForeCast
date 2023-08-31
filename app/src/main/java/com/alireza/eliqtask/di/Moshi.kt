@@ -14,7 +14,7 @@ import javax.inject.Singleton
 object Moshi {
     @Singleton
     @Provides
-    fun provideMoshi() =
+    fun provideMoshi(): Moshi =
         Moshi.Builder()
             .add(KotlinJsonAdapterFactory())
             .add(DateJsonAdapter())

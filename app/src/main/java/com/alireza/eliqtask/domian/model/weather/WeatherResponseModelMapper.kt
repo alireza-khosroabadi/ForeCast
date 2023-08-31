@@ -21,10 +21,10 @@ import java.util.Date
  * this is a good use case for using domain models.
  * */
 
-class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse) {
+class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse, selectedLocation:String) {
     private val currentWeather: CurrentWeather by lazy {
         generateCurrentWeather(
-            weatherResponse.timezone ?: "",
+            selectedLocation,
             weatherResponse.currentWeather,
             weatherResponse.hourlyUnits
         )

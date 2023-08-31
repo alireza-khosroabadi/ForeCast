@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.alireza.eliqtask.base.domain.model.UseCaseModel
 import com.alireza.eliqtask.data.local.entity.UiModel
 import com.alireza.eliqtask.data.local.entity.UiPattern
+import com.alireza.eliqtask.data.local.entity.ViewPattern
 import com.alireza.eliqtask.data.local.file.uiPatternStore.UiPatterDataStore
 import com.alireza.eliqtask.data.repository.uiPattern.UiPatternRepositoryImpl
 import com.alireza.eliqtask.domian.repository.uiPattern.UiPatternRepository
@@ -39,7 +40,7 @@ class UiPatternUseCaseTest {
 
     @Test
     fun `get correct ui pattern`() = runTest {
-        `when`(uiPatterDataStore.getUiPattern(any())).thenReturn(UiPattern(listOf(UiModel("Header",true, 0))))
+        `when`(uiPatterDataStore.getUiPattern(any())).thenReturn(UiPattern(listOf(UiModel(ViewPattern.CurrentWeather,true, 0))))
 
         uiPatternUseCase().collect{model ->
             assertTrue(model is UseCaseModel.Success)
