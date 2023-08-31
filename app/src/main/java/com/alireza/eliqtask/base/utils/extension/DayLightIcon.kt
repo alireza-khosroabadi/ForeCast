@@ -1,4 +1,4 @@
-package com.alireza.eliqtask.utils.extension
+package com.alireza.eliqtask.base.utils.extension
 
 import com.alireza.eliqtask.data.remote.entity.weather.WeatherStatus
 

@@ -19,6 +19,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="invisible"
         android:paddingTop="@dimen/padding_16dp"/>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
