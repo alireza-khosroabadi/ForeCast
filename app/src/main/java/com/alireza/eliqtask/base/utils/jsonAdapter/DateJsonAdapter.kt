@@ -1,4 +1,4 @@
-package com.alireza.eliqtask.utils.jsonAdapter
+package com.alireza.eliqtask.base.utils.jsonAdapter
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.JsonAdapter
