@@ -6,7 +6,7 @@ import com.alireza.eliqtask.data.repository.uiPattern.UiPatternRepositoryImpl
 import com.alireza.eliqtask.data.repository.weather.ForeCastRepositoryImpl
 import com.alireza.eliqtask.domian.repository.uiPattern.UiPatternRepository
 import com.alireza.eliqtask.domian.repository.weather.ForeCastRepository
-import com.alireza.eliqtask.utils.network.NetworkConnectivity
+import com.alireza.eliqtask.base.utils.network.NetworkConnectivity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

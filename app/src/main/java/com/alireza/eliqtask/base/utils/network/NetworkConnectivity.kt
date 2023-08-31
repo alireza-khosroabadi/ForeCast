@@ -1,4 +1,4 @@
-package com.alireza.eliqtask.utils.network
+package com.alireza.eliqtask.base.utils.network
 
 import android.content.Context
 import android.net.ConnectivityManager

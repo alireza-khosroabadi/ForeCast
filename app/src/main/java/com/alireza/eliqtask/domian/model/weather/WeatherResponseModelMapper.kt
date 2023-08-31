@@ -7,9 +7,9 @@ import com.alireza.eliqtask.data.remote.entity.weather.DailyUnitsResponse
 import com.alireza.eliqtask.data.remote.entity.weather.HourlyResponse
 import com.alireza.eliqtask.data.remote.entity.weather.HourlyUnitsResponse
 import com.alireza.eliqtask.data.remote.entity.weather.WeatherResponse
-import com.alireza.eliqtask.utils.extension.toFormattedDate
-import com.alireza.eliqtask.utils.extension.toFormattedDateTime
-import com.alireza.eliqtask.utils.extension.toFormattedTime
+import com.alireza.eliqtask.base.utils.extension.toFormattedDate
+import com.alireza.eliqtask.base.utils.extension.toFormattedDateTime
+import com.alireza.eliqtask.base.utils.extension.toFormattedTime
 import java.util.Calendar
 import java.util.Date
 

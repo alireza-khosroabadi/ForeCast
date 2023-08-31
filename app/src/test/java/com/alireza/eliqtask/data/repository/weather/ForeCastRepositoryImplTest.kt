@@ -6,7 +6,7 @@ import com.alireza.eliqtask.data.remote.api.ForeCastApiService
 import com.alireza.eliqtask.data.remote.entity.weather.WeatherResponse
 import com.alireza.eliqtask.data.remote.param.ForeCastParam
 import com.alireza.eliqtask.domian.repository.weather.ForeCastRepository
-import com.alireza.eliqtask.utils.network.NetworkConnectivity
+import com.alireza.eliqtask.base.utils.network.NetworkConnectivity
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
