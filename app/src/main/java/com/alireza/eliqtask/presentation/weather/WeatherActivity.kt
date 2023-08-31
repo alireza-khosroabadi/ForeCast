@@ -3,6 +3,7 @@ package com.alireza.eliqtask.presentation.weather
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
@@ -69,6 +70,7 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun showData(weather: Weather, uiPattern: UiPattern) {
+        mBinding.baseUi.isVisible = true
         homeAdapter.setWeatherDetails(weather)
         homeAdapter.submitList(uiPattern.pattern)
     }
@@ -78,6 +80,7 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private fun showError(isError: Boolean, error: ErrorModel? = null) {
+        mBinding.baseUi.isInvisible=true
         mBinding.errorLayout.errorLayoutContainer.isVisible = isError
         mBinding.errorLayout.tvError.text = error?.errorMessage
     }

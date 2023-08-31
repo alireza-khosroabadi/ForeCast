@@ -34,18 +34,21 @@ class UiPatternDataStoreTest{
     fun `test reading text file from assets`() = runBlocking {
         val fileName = "test.json"
         val fileContents = "{\n" +
-                "  \"uiPattern\": [\n" +
+                "  \"pattern\": [\n" +
                 "    {\n" +
-                "      \"type\": \"Title\",\n" +
-                "      \"isVisible\": true\n" +
+                "      \"type\": \"CurrentWeather\",\n" +
+                "      \"isVisible\": true,\n" +
+                "      \"order\": 0\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"type\": \"Hourly\",\n" +
-                "      \"isVisible\": true\n" +
+                "      \"isVisible\": true,\n" +
+                "      \"order\": 1\n" +
                 "    },\n" +
                 "    {\n" +
                 "      \"type\": \"Daily\",\n" +
-                "      \"isVisible\": true\n" +
+                "      \"isVisible\": true,\n" +
+                "      \"order\": 3\n" +
                 "    }\n" +
                 "  ]\n" +
                 "}"

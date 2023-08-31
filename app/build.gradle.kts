@@ -16,7 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
         multiDexEnabled = true
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.alireza.eliqtask.config.HiltTestRunner"
 
 
         buildConfigField("String", "BASE_URL", project.properties["BASE_URL"].toString())
@@ -138,5 +138,5 @@ dependencies {
     androidTestImplementation("androidx.arch.core:core-testing:$androidxArchCoreVersion")
 
 
-    kaptAndroidTest("com.google.dagger:hilt-compiler:$hiltCompilerVersion")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:$hiltVersion")
 }
