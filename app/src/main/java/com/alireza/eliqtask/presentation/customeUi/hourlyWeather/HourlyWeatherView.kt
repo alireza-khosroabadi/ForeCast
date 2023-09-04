@@ -40,5 +40,6 @@ class HourlyWeatherView @JvmOverloads constructor(
     fun updateWeather(weather:Hourly){
         binding.tvDate.text = weather.timeUnit
         hourlyAdapter.submitList(weather.data)
+        binding.rcHourly.scrollToPosition(weather.data.indexOfFirst { it.time=="Now" })
     }
 }
