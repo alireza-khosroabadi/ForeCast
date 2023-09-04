@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.alireza.eliqtask.databinding.CurrentWeatherViewBinding
 import com.alireza.eliqtask.domian.model.weather.CurrentWeather
-import com.alireza.eliqtask.base.utils.extension.getCorrectIconBasedOnDayLight
 
 class CurrentWeatherView @JvmOverloads constructor(
     ctx: Context,
@@ -27,6 +26,6 @@ class CurrentWeatherView @JvmOverloads constructor(
         binding.tvTemp.text = weather.temperature
         binding.tvWindSpeed.text = weather.windSpeed
         binding.tvPressure.text = weather.windDirection.toString()
-        weather.weatherCode?.let { binding.imgWeather.setImageResource(getCorrectIconBasedOnDayLight(weather.isDay,it)) }
+        weather.weatherCode?.let { binding.imgWeather.setImageResource(it.getPrepareIcon(weather.isDay)) }
     }
 }

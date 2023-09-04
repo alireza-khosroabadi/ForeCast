@@ -78,4 +78,10 @@ enum class WeatherStatus(
         R.drawable.fluent_weather_snow_24_regular,
         R.string.thunderstorm
     );
+
+    fun getPrepareIcon(isDay: Int?): Int = when(isDay){
+        0 -> iconDay
+        1 -> iconNight
+        else -> iconDay
+    }
 }
