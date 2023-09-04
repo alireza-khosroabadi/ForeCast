@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.alireza.eliqtask.databinding.ListItemHourlyWeatherBinding
 import com.alireza.eliqtask.domian.model.weather.HourlyData
-import com.alireza.eliqtask.base.utils.extension.getCorrectIconBasedOnDayLight
 
 class HourlyWeatherAdapter: ListAdapter<HourlyData,HourlyWeatherAdapter.ViewHolder >(DiffCallback()) {
 
@@ -28,9 +27,8 @@ class HourlyWeatherAdapter: ListAdapter<HourlyData,HourlyWeatherAdapter.ViewHold
             binding.tvTemp.text = data.temperature2m
             binding.tvHour.text = data.time
             binding.tvRain.text = data.precipitationProbability
-//            binding.imgWeatherStatus.setImageResource(data.weatherCode.iconDay)
             data.weatherCode?.let { binding.imgWeatherStatus.setImageResource(
-                getCorrectIconBasedOnDayLight(data.isDay,it)
+                it.getPrepareIcon(data.isDay)
             ) }
         }
     }
