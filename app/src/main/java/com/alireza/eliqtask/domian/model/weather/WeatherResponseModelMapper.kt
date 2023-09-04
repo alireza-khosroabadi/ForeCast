@@ -85,9 +85,9 @@ class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse, s
     ): Hourly {
         val todayDay = today()
         val hourlyList = hourly?.time?.map { date -> getTodayDate(date) }
-            ?.filter { it.get(Calendar.DAY_OF_YEAR) == todayDay }?.mapIndexed { index, time ->
+            ?.filter { it.get(Calendar.DAY_OF_YEAR) == todayDay.first }?.mapIndexed { index, time ->
                 HourlyData(
-                    time = time.time.toFormattedTime(),
+                    time = formattedTime(time.time, todayDay.second),
                     temperature2m = "${hourly.temperature_2m[index].toInt()}$DEGREE_SYMBOL",
                     weatherCode = weatherStatusFromInt(hourly.weathercode[index]),
                     precipitationProbability = "${hourly.precipitationProbability[index]} ${hourlyUnits?.precipitationProbability}"
@@ -105,10 +105,9 @@ class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse, s
     private fun getTodayDate(date: Date): Calendar =
         Calendar.getInstance().apply { time = date }
 
-    private fun today(): Int {
+    private fun today(): Pair<Int,Int> {
         val today = Calendar.getInstance()
-        val todayDay = today.get(Calendar.DAY_OF_YEAR)
-        return todayDay
+        return today.get(Calendar.DAY_OF_YEAR) to today.get(Calendar.HOUR_OF_DAY)
     }
 
     /**
@@ -130,4 +129,10 @@ class WeatherResponseModelMapper(private val weatherResponse: WeatherResponse, s
     }
 
 
+    fun formattedTime(time:Date, now:Int):String{
+        var time = time.toFormattedTime()
+        if (time.split(":")[0].toInt() == now)
+            time = "Now"
+        return time
+    }
 }
