@@ -80,6 +80,7 @@ dependencies {
     val coroutinesVersion = "1.7.3"
     val roomVersion = "2.6.0-beta01"
     val hiltVersion = "2.47"
+    val hiltViewModelVersion = "1.0.0"
     val hiltCompilerVersion = "2.44.2"
     val junitVersion = "4.13.2"
     val mockitoKotlinVersion = "4.1.0"
@@ -101,7 +102,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.material3:material3-window-size-class")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
 
     implementation("androidx.core:core-ktx:$coreKtxVersion")
     implementation("androidx.appcompat:appcompat:$appCompatVersion")
@@ -112,6 +114,7 @@ dependencies {
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:$swipeToRefreshVersion")
 
     implementation("com.google.dagger:hilt-android:$hiltVersion")
+    implementation("androidx.hilt:hilt-navigation-compose:$hiltViewModelVersion")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
