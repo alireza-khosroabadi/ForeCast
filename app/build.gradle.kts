@@ -42,6 +42,10 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.8"
     }
 }
 
@@ -77,6 +81,17 @@ dependencies {
     val androidxTestRunnerVersion = "1.5.2"
     val androidxArchCoreVersion = "2.2.0"
     val espressoVersion = "3.5.1"
+    val composeBom = platform("androidx.compose:compose-bom:2023.08.00")
+
+
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+    implementation("androidx.compose.material3:material3")
+
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation("androidx.compose.material3:material3-window-size-class")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
     implementation("androidx.core:core-ktx:$coreKtxVersion")
     implementation("androidx.appcompat:appcompat:$appCompatVersion")
@@ -137,6 +152,8 @@ dependencies {
     androidTestImplementation("org.mockito:mockito-inline:$mockitoInlineVersion")
     androidTestImplementation("androidx.arch.core:core-testing:$androidxArchCoreVersion")
 
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     kaptAndroidTest("com.google.dagger:hilt-compiler:$hiltVersion")
 }
