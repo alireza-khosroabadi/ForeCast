@@ -20,6 +20,9 @@ android {
 
 
         buildConfigField("String", "BASE_URL", project.properties["BASE_URL"].toString())
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -45,7 +48,12 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.8"
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 
@@ -85,8 +93,10 @@ dependencies {
 
 
     implementation(composeBom)
-    androidTestImplementation(composeBom)
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.activity:activity-compose:1.7.2")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
 
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
@@ -130,7 +140,7 @@ dependencies {
 
     debugImplementation("androidx.fragment:fragment-ktx:$fragmentVersion")
     debugImplementation("androidx.fragment:fragment-testing:$fragmentVersion")
-
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     testImplementation("junit:junit:$junitVersion")
     testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
@@ -151,9 +161,9 @@ dependencies {
     androidTestImplementation("org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion")
     androidTestImplementation("org.mockito:mockito-inline:$mockitoInlineVersion")
     androidTestImplementation("androidx.arch.core:core-testing:$androidxArchCoreVersion")
-
+    androidTestImplementation(composeBom)
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+
 
     kaptAndroidTest("com.google.dagger:hilt-compiler:$hiltVersion")
 }

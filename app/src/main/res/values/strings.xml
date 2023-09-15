@@ -17,4 +17,5 @@
     <string name="thunderstorm">Thunderstorm</string>
     <string name="freezing_drizzle">Freezing Drizzle</string>
     <string name="retry">retry</string>
+    <string name="title_activity_forecast">ForecastActivity</string>
 </resources>
