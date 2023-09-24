@@ -22,6 +22,8 @@ import com.alireza.eliqtask.data.local.entity.ViewPattern
 import com.alireza.eliqtask.domian.model.weather.CurrentWeather
 import com.alireza.eliqtask.domian.model.weather.Weather
 import com.alireza.eliqtask.presentation.forecast.currentWeather.CurrentWeather
+import com.alireza.eliqtask.presentation.forecast.dailyWeather.DailyWeather
+import com.alireza.eliqtask.presentation.forecast.hourlyWeather.HourlyWeather
 import com.alireza.eliqtask.presentation.ui.theme.EliqTaskTheme
 import com.alireza.eliqtask.presentation.weather.WeatherViewModel
 import com.alireza.eliqtask.presentation.weather.WeatherViewState
@@ -71,14 +73,17 @@ fun Home(modifier: Modifier = Modifier, viewModel: WeatherViewModel = hiltViewMo
 
 @Composable
 fun WeatherList(modifier: Modifier=Modifier, weather: WeatherViewState.WeatherData){
-    LazyColumn(modifier = modifier.fillMaxHeight().padding(16.dp)) {
+    LazyColumn(modifier = modifier
+        .fillMaxHeight()
+        .padding(vertical = 16.dp)) {
         items(items = weather.uiPattern.pattern){item -> when(item.type){
             ViewPattern.CurrentWeather -> weather.weather.currentWeather?.let {
                 CurrentWeather(
                     currentWeather = it
                 )
             }
-           else -> {}
+            ViewPattern.Hourly ->  HourlyWeather(hourly = weather.weather.hourly )
+            ViewPattern.Daily -> DailyWeather(daily = weather.weather.daily )
         }
 
         }

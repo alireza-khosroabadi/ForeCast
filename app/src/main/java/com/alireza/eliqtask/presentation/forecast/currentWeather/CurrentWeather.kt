@@ -48,7 +48,7 @@ fun CurrentWeather(modifier: Modifier = Modifier, currentWeather: CurrentWeather
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        MaterialTheme.colorScheme.surface,  MaterialTheme.colorScheme.secondary
+                        MaterialTheme.colorScheme.surfaceVariant,  MaterialTheme.colorScheme.surface
                     )
                 )
             )
