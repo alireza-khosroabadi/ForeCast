@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -21,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -38,24 +40,11 @@ import com.alireza.eliqtask.presentation.ui.theme.EliqTaskTheme
 @Composable
 fun DailyWeather(modifier: Modifier = Modifier, daily: Daily) {
 
-    val nestedScrollConnection = remember {
-        object : NestedScrollConnection {
-            override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
-                // try to consume before LazyColumn to collapse toolbar if needed, hence pre-scroll
-                val delta = available.y
-                // here's the catch: let's pretend we consumed 0 in any case, since we want
-                // LazyColumn to scroll anyway for good UX
-                // We're basically watching scroll without taking it
-                return Offset.Zero
-            }
-        }
-    }
 
     LazyColumn(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .nestedScroll(nestedScrollConnection)
             .padding(top = 4.dp)
             .background(color = MaterialTheme.colorScheme.background)
     ) {
@@ -87,18 +76,20 @@ fun DailyWeatherItem(modifier: Modifier = Modifier, data: DailyData) {
             modifier = modifier
                 .padding(vertical = 8.dp)
                 .weight(1f),
-            horizontalArrangement = Arrangement.Start
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 painter = painterResource(id = data.weatherCode.iconDay),
                 contentDescription = "",
+                tint = Color.Unspecified,
                 modifier = modifier
                     .size(32.dp)
             )
 
             Text(
                 modifier = modifier
-                    .padding(vertical = 8.dp),
+                    .padding(start = 2.dp),
                 text = stringResource(id = data.weatherCode.title),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.titleMedium,
@@ -108,10 +99,11 @@ fun DailyWeatherItem(modifier: Modifier = Modifier, data: DailyData) {
         Text(
             modifier = modifier
                 .padding(end = 16.dp)
+                .padding(vertical = 8.dp)
                 .weight(1f),
             text = data.windSpeed10mMax,
             textAlign = TextAlign.End,
-            style = MaterialTheme.typography.titleSmall
+            style = MaterialTheme.typography.labelSmall
         )
 
     }

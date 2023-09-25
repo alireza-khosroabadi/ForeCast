@@ -9,12 +9,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -25,10 +35,13 @@ import com.alireza.eliqtask.domian.model.weather.Hourly
 import com.alireza.eliqtask.domian.model.weather.HourlyData
 import com.alireza.eliqtask.presentation.forecast.hourlyWeather.sampleData.HourlyWeatherProvider
 import com.alireza.eliqtask.presentation.ui.theme.EliqTaskTheme
+import kotlinx.coroutines.launch
 
 @Composable
 fun HourlyWeather(modifier: Modifier = Modifier, hourly: Hourly) {
-
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+    val nowIndex by remember { mutableIntStateOf(hourly.data.indexOfFirst { it.time =="Now" }) }
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -36,18 +49,26 @@ fun HourlyWeather(modifier: Modifier = Modifier, hourly: Hourly) {
     ) {
         Text(
             modifier = modifier
-                .padding(top = 24.dp, start = 16.dp),
+                .padding(top = 8.dp, start = 16.dp),
             text = hourly.timeUnit,
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleMedium
         )
         LazyRow(
+            state= listState,
             modifier = modifier
                 .fillMaxWidth()
                 .padding(top = 4.dp)
-                .background(color = MaterialTheme.colorScheme.surface)
+                .background(color = MaterialTheme.colorScheme.surface),
         ) {
-            items(hourly.data) { item -> HourlyWeatherItem(data = item) }
+            itemsIndexed(hourly.data) { index , item->
+                HourlyWeatherItem(data = item)
+            }
+        }
+        LaunchedEffect(listState){
+            coroutineScope.launch {
+                listState.scrollToItem(nowIndex)
+            }
         }
     }
 }
@@ -72,6 +93,7 @@ fun HourlyWeatherItem(modifier: Modifier = Modifier, data: HourlyData) {
         Icon(
             painter = painterResource(id = data.weatherCode.getPrepareIcon(data.isDay)),
             contentDescription = "",
+            tint = Color.Unspecified,
             modifier = modifier
                 .size(32.dp)
                 .padding(top = 8.dp)

@@ -44,6 +44,7 @@ import com.alireza.eliqtask.presentation.ui.theme.EliqTaskTheme
 fun CurrentWeather(modifier: Modifier = Modifier, currentWeather: CurrentWeather) {
     Box(
         modifier = modifier
+            .padding(16.dp)
             .clip(RoundedCornerShape(16.dp))
             .background(
                 brush = Brush.verticalGradient(
