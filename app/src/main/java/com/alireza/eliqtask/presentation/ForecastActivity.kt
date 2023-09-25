@@ -3,18 +3,22 @@ package com.alireza.eliqtask.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,6 +29,7 @@ import com.alireza.eliqtask.R
 import com.alireza.eliqtask.data.local.entity.ViewPattern
 import com.alireza.eliqtask.domian.model.weather.CurrentWeather
 import com.alireza.eliqtask.domian.model.weather.Weather
+import com.alireza.eliqtask.presentation.forecast.ErrorView
 import com.alireza.eliqtask.presentation.forecast.currentWeather.CurrentWeather
 import com.alireza.eliqtask.presentation.forecast.dailyWeather.DailyWeather
 import com.alireza.eliqtask.presentation.forecast.dailyWeather.DailyWeatherItem
@@ -46,7 +51,7 @@ class ForecastActivity : ComponentActivity() {
                         .fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Home()
+                        Home()
                 }
             }
         }
@@ -65,15 +70,34 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun Home(modifier: Modifier = Modifier, viewModel: WeatherViewModel = hiltViewModel()) {
 
     val uiState: WeatherViewState by viewModel.uiWeatherState.collectAsStateWithLifecycle()
+    HomeContent(uiState, modifier){ viewModel.loadWeather() }
+
+}
+
+@Composable
+private fun HomeContent(
+    uiState: WeatherViewState,
+    modifier: Modifier,
+    onClickAction: ()->Unit
+) {
     when (uiState) {
         is WeatherViewState.WeatherData -> WeatherList(
             modifier = modifier,
-            weather = (uiState as WeatherViewState.WeatherData)
+            weather = uiState
         )
 
-        else -> {}
-    }
+        is WeatherViewState.Loading -> {
+            Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                CircularProgressIndicator(
+                    modifier = Modifier.width(64.dp),
+                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    trackColor = MaterialTheme.colorScheme.secondary,
+                )
+            }
+        }
 
+        is WeatherViewState.ErrorData -> ErrorView(error = uiState.error, onClickAction = onClickAction)
+    }
 }
 
 @Composable
