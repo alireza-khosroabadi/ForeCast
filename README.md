@@ -1,4 +1,4 @@
-# EliqTask
+# Forecast
 
 
 
@@ -37,7 +37,7 @@ The application contains these packages:
 
   Light Mode               |  Dark Mode
 :-------------------------:|:-------------------------:
-<img src="https://github.com/alireza-khosroabadi/EliqTask/blob/master/screenshots/light.jpg" width="280">  | <img src="https://github.com/alireza-khosroabadi/EliqTask/blob/master/screenshots/dark.jpg" width="280">
+<img src="https://github.com/alireza-khosroabadi/ForeCast/blob/master/screenshots/light.jpg" width="280">  | <img src="https://github.com/alireza-khosroabadi/ForeCast/blob/master/screenshots/dark.jpg" width="280">
 
 
 ## Libraries and tools 🛠
